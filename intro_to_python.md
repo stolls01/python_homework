@@ -39,8 +39,10 @@ print(global_mean_sea_level_2018)
 ```python
 str = "It's always darkest before dawn."
 print(str)
+```
 
 ### 9b
+```python
 ans = str[0]+str[1]+str[-1]
 print(ans)
 ```
@@ -68,10 +70,11 @@ print(msg_length)
 ```
 
 ### 10c
+```python
 dict={"Real Madrid": 13,"AC Milan": 7,"Bayern Munich":5 ,"Barcelona": 5, "Liverpool": 5}
-#Type your answer here.
 ans_1 = len(dict)
 print(ans_1)
+```
 
 ## 11
 ### 11a
@@ -102,6 +105,7 @@ lst=[11, 100, 99, 1000, 999]
 popped_item = lst.pop(-1)
 print(popped_item)
 print(lst)
+```
 
 ### 12b
 not using .index
