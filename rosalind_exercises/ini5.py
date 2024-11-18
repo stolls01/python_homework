@@ -7,11 +7,14 @@
 # execute on command line as following:
 # python ini5.py > ini5_solution.txt
 
-
-# creates output file
 open("ini5_solution.txt")
 filepath = "./rosalind_data/rosalind_ini5.txt"
 with open(filepath, "r") as infile:
     line_object = infile.readlines()
     for lines in line_object[1::2]:
         print(lines.rstrip())
+
+
+#write out to file
+#with open("some_path.txt", "w") as outfile:
+#    outfile.write(string + "\n")
