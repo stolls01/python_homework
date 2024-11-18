@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#does same as putting in 
+#does same as typing in "python" before script name
+
 #library of utility functions for rosalind exercises
 
 def read_input(filepath):
@@ -37,6 +38,14 @@ def reverse_complement(string):
     for p in range(len(string)):
          c += complement(string[p])
     return(c[::-1])
+
+def gccomp(x):
+    gccount = 0
+    atcount = 0
+    for position in range(len(x)):
+        if x[position] == "G" or x[position] == "C":
+            gccount += 1
+    return((gccount / len(x)) * 100)
 
 codons = {
 "UUU": "F",      "CUU": "L",      "AUU": "I",      "GUU": "V",
