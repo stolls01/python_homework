@@ -1,13 +1,15 @@
 ## Rosalind: Computing GC Content
-**Given:** At most 10 DNA strings in FASTA format (of length at most 1 kbp each).
-**Return:** The ID of the string having the highest GC-content, followed by the GC-content of that string.
+_**Given:** At most 10 DNA strings in FASTA format (of length at most 1 kbp each).
+**Return:** The ID of the string having the highest GC-content, followed by the GC-content of that string._
 
-open input = fasta file
+------------------------------------------------
+
+open input = fasta file.
 strip all lines contained, return them in list
 
-with loop, go through all lines in stripped list
-make a list containing the dna indices
-make a list containing the concatenated dna strings
+with loop, go through all lines in stripped list.  
+make a list containing the dna indices.  
+make a list containing the concatenated dna strings.
 
 ```python
 for lines in read_input(filepath):
@@ -39,8 +41,7 @@ def gccomp(x):
     return((gccount / (atcount + gccount)) * 100)
 ```
 
-apply gc function to all values in the dictionary, then get the highest one
-print it with the respective index
+apply gc function to all values in the dictionary, then get the highest one + print it with the respective index
 
 ```python
 for key in dnadict.keys():
