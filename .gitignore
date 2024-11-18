@@ -1,2 +1,3 @@
 rosalind_exercises/rosalind_data/*
 cheatsheets/*
+*/__pycache__
