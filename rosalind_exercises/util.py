@@ -66,15 +66,14 @@ codons = {
 "UGG": "W",      "CGG": "R",      "AGG": "R",      "GGG": "G", 
 }
 
-def translate(s, codons):
-    acids = []
-    for x in range(0, len(s), 3):
-        temp = s[x:x+3]
-        acid = codons[temp]
+def translate(s):
+    acids = ""
+    for x in range(0, len(s), 3): # advances along entire string in steps of 3
+        triple = s[x:x+3] # takes three bases with each iteration
+        acid = codons[triple]
         if acid == "STOP":
-            return("".join(acids))
-        acids.append(acid)
-    return("".join(acids))
+            return(acids) # returns sequence when stop codon is reached
+        acids += acid
 
 def hamm(dnas):
     dna1 = dnas[0]
