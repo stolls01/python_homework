@@ -12,3 +12,14 @@ for letter in s:
         counter[letter] += 1
 
 print(counter["A"], counter["C"], counter["G"], counter["T"])
+
+
+
+
+def count(s):
+    counter = {}
+    for letter in s:
+        if letter not in counter:
+            counter[letter] = 1
+        else:
+            counter[letter] += 1

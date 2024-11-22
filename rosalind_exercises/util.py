@@ -3,6 +3,42 @@
 
 #library of utility functions for rosalind exercises
 
+def fastaex(filepath):
+    from util import read_input
+    sequences = {}
+    current_id = ""
+    for line in read_input(filepath):
+        if line[0] == ">":
+            header = line
+            current_id = header[1:]
+            sequences[current_id] = ""
+        else:
+            sequence = line
+            sequences[current_id] += sequence
+    return sequences
+
+
+def exfasta(filepath):
+    infile = read_input(filepath)
+    samples = []
+    dnas = []
+    temp = ""
+    for line in infile:
+        if line[0] == ">":
+            samples.append(line) # adds dna indices to samples list
+            if bool(temp) is True: # so that establishing temp = "" string doesnt occupy dnas[0]
+                dnas.append(temp) # each time a new dna index is reached, it compiles the in temp saved string of previous dna (if present) and adds it to list
+            temp = ""
+        elif ">" not in line and line == infile[(len(infile)-1)]: #if it is final line of document
+            temp += line
+            dnas.append(temp)
+        elif ">" not in line:
+            temp += line
+    dnadict = {}
+    for x in range(len(dnas)):
+        dnadict[samples[x].lstrip(">")] = dnas[x]
+    return dnadict
+
 def read_input(filepath):
     with open(filepath, "r") as infile:
         lines = infile.readlines()
@@ -69,11 +105,15 @@ codons = {
 def translate(s):
     acids = ""
     for x in range(0, len(s), 3): # advances along entire string in steps of 3
-        triple = s[x:x+3] # takes three bases with each iteration
-        acid = codons[triple]
-        if acid == "STOP":
-            return(acids) # returns sequence when stop codon is reached
-        acids += acid
+        triplet = s[x:x+3] # takes three bases with each iteration
+        if len(triplet) == 3:
+# maybe orf of given sequence doesnt have stop codon but we still want to translate as much as possible, will throw error if triplet is not a triplet
+            acid = codons[triplet]
+            if acid == "STOP":
+                return(acids) # returns sequence when stop codon is reached
+            acids += acid
+        else:
+            return(acids)
 
 def hamm(dnas):
     dna1 = dnas[0]
