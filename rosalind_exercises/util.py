@@ -3,7 +3,7 @@
 
 #library of utility functions for rosalind exercises
 
-def fastaex(filepath):
+def exfasta(filepath):
     from util import read_input
     sequences = {}
     current_id = ""
@@ -16,28 +16,6 @@ def fastaex(filepath):
             sequence = line
             sequences[current_id] += sequence
     return sequences
-
-
-def exfasta(filepath):
-    infile = read_input(filepath)
-    samples = []
-    dnas = []
-    temp = ""
-    for line in infile:
-        if line[0] == ">":
-            samples.append(line) # adds dna indices to samples list
-            if bool(temp) is True: # so that establishing temp = "" string doesnt occupy dnas[0]
-                dnas.append(temp) # each time a new dna index is reached, it compiles the in temp saved string of previous dna (if present) and adds it to list
-            temp = ""
-        elif ">" not in line and line == infile[(len(infile)-1)]: #if it is final line of document
-            temp += line
-            dnas.append(temp)
-        elif ">" not in line:
-            temp += line
-    dnadict = {}
-    for x in range(len(dnas)):
-        dnadict[samples[x].lstrip(">")] = dnas[x]
-    return dnadict
 
 def read_input(filepath):
     with open(filepath, "r") as infile:
