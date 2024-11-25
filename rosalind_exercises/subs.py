@@ -1,6 +1,6 @@
 def comb(s, t):
     o = []
-    for x in range(len(s)):
+    for x in range(len(s) - len(t)):
         if s[x:x+len(t)] == t:
             o.append(x + 1) # +1 for human-readable lines
     return(o) # list of occurrences (positions)

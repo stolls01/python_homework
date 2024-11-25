@@ -18,13 +18,12 @@ fw = f
 
 palindromes_positions = {}
 palindromes = {}
-pal = []
 for x in range(len(fw)):
-    for y in range(4, len(fw)):
+    for y in range(4, 13):
         current_frame = fw[x:x+y]
         if len(current_frame) in range(4, 13) and current_frame == reverse_complement(current_frame):
-            palindromes_positions[x + 1] = len(current_frame)
-            palindromes[fw[x:x+y]] = len(current_frame)
+            palindromes_positions[x + 1] = len(current_frame) # +1 for human readable lines
+            palindromes[current_frame] = len(current_frame)
 
 for key, value in palindromes_positions.items():
      print(key, value)

@@ -44,11 +44,9 @@ for s in transcribed:
     for x in range(current_aug, len(s)): # advances along entire string
         triplet = s[x:x+3] # takes three bases with each iteration
         if triplet == "AUG": # searches if the three bases are an aug 
-            current_aug = s[x] # so that it skips to next aug on next iteration
-            acids = [] # empties temp peptide string for each iteration
+            current_aug = s[x] # so that it bypasses that reading frame on next iteration or it would be endless loop of first aug
             orf = s[x:]
             proteins.append(translate(orf))
-            print(translate(orf))
 
 
 # for some reason, "None" is added once -- remove it
