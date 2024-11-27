@@ -84,8 +84,8 @@ def translate(s):
     acids = ""
     for x in range(0, len(s), 3): # advances along entire string in steps of 3
         triplet = s[x:x+3] # takes three bases with each iteration
+# maybe orf of given sequence doesnt have stop codon, will throw error if triplet is not a triplet
         if len(triplet) == 3:
-# maybe orf of given sequence doesnt have stop codon but we still want to translate as much as possible, will throw error if triplet is not a triplet
             acid = codons[triplet]
             if acid == "STOP":
                 return(acids) # returns sequence when stop codon is reached

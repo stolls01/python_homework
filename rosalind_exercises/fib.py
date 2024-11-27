@@ -1,13 +1,13 @@
-months = 25
-fertile = 0
-litter = 5
-unfertile = 1
+#n = months
+#k = litter
 
-# rn = rn-1 + rn-2 * litter
+def rabbits(n, k):
+    if n < 1:
+        return 0
+    if n == 1 or n == 2:
+        return 1
+    return rabbits(n-1, k) + k * rabbits(n-2, k)
 
-for i in range(months):
-    new_gen = fertile + unfertile
-    print(new_gen)
-    # with next month/iteration, all unfertile + fertile ones (= this new generation) will be fertile
-    fertile = new_gen
-    unfertile = fertile * litter
+n = 29
+k = 2
+print(rabbits(n, k))
