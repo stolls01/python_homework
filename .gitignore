@@ -2,3 +2,4 @@ rosalind_exercises/rosalind_data/*
 cheatsheets/*
 */__pycache__
 rosalind_exercises/test.txt
+./advent_of_code/*
