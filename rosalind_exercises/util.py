@@ -17,6 +17,11 @@ def exfasta(filepath):
             sequences[current_id] += sequence
     return sequences
 
+def oneseq_exfasta(filepath):
+    from util import exfasta
+    dna = list(exfasta(filepath).values())[0]
+    return dna
+
 def read_input(filepath):
     with open(filepath, "r") as infile:
         lines = infile.readlines()
@@ -81,17 +86,16 @@ codons = {
 }
 
 def translate(s):
+    from util import codons
     acids = ""
     for x in range(0, len(s), 3): # advances along entire string in steps of 3
         triplet = s[x:x+3] # takes three bases with each iteration
-# maybe orf of given sequence doesnt have stop codon, will throw error if triplet is not a triplet
+# maybe orf doesnt have stop codon, will throw error if triplet is not a triplet
         if len(triplet) == 3:
             acid = codons[triplet]
             if acid == "STOP":
                 return(acids) # returns sequence when stop codon is reached
             acids += acid
-        else:
-            return(acids)
 
 def hamm(dnas):
     dna1 = dnas[0]

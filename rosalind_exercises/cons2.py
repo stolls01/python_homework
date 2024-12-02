@@ -5,12 +5,7 @@ dnas = list(exfasta(filepath).values())
 profilematrix = {}
 
 for i in range(len(dnas[0])):
-#for i in range(0):
-    counter = {
-        "A": 0,
-        "C": 0,
-        "G": 0,
-        "T": 0,}
+    counter = {"A": 0, "C": 0, "G": 0, "T": 0}
     for dna in dnas:
         for key in counter.keys():
             if dna[i] == key:
@@ -18,7 +13,7 @@ for i in range(len(dnas[0])):
     for acgt in "ACGT":
         if i == 0:
             profilematrix[acgt] = [] # establishes that the dictionary has lists as values
-        profilematrix[acgt].insert(i, counter[acgt])
+        profilematrix[acgt].append(counter[acgt])
 
 #print(profilematrix)
 #{'A': [5, 1, 0, 0, 5, 5, 0, 0], 'C': [0, 0, 1, 4, 2, 0, 6, 1], 'G': [1, 1, 6, 3, 0, 1, 0, 0], 'T': [1, 5, 0, 0, 0, 1, 1, 6]}

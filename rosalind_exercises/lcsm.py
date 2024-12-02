@@ -1,8 +1,6 @@
 from util import exfasta
-
 filepath = "./rosalind_data/rosalind_lcsm.txt"
-dict = exfasta(filepath)
-dnas = list(dict.values())
+dnas = list(exfasta(filepath).values())
 
 longest_string = ""
 for d in dnas:
@@ -12,9 +10,9 @@ for d in dnas:
 longest_substring = ""
 
 for x in range(0, (len(longest_string))):
-    for y in range(len(longest_substring)+1, 1000):
+    for y in range(len(longest_substring)+1, 1000-x):
         current_substring = longest_string[x:x+y] 
-        if bool(current_substring) is True and len(current_substring) > len(longest_substring):
+        if len(current_substring) > len(longest_substring):
             temp = ""
             for dna in dnas:
                 if "STOP" in temp:
@@ -27,6 +25,5 @@ for x in range(0, (len(longest_string))):
                 longest_substring = current_substring
             else:
                 pass
-
 
 print(longest_substring)

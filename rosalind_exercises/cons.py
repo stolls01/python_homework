@@ -23,10 +23,10 @@ for i in range(len(dnas[0])):
             g_count += 1
         elif dna[i] == "T":
             t_count += 1
-    a_profile.insert(i, a_count)
-    c_profile.insert(i, c_count)
-    g_profile.insert(i, g_count)
-    t_profile.insert(i, t_count)
+    a_profile.append(a_count)
+    c_profile.append(c_count)
+    g_profile.append(g_count)
+    t_profile.append(t_count)
 
 profile = {}
 nucleotide_profiles = [a_profile, c_profile, g_profile, t_profile]
