@@ -1,39 +1,26 @@
 from util import read_input
+lines = read_input("input_2.txt")
 
-filepath = "input_2.txt"
-lines = read_input(filepath)
-
-# are numbers ascending in order
-def ascending(line):
+# are numbers ascending or descending in order
+def in_order(line):
     line2 = sorted(line)
-    if line == line2:
-        return True
-
-#are they descending in order
-def descending(line):
-    line2 = sorted(line)
-    if line == line2[::-1]:
+    if line == line2 or line == line2[::-1]:
         return True
 
 # are all differences between neighboring numbers between 1 and 3
 def diff_in_range(line):
-    temp = []
     tf = ""
     for x in range(len(line)-1):
-        temp.append(abs(line[x] - line[x+1]))
-    for x in temp:
-        if x > 3 or x == 0:
+        diff = abs(line[x] - line[x+1])
+        if diff > 3 or diff == 0:
             tf += "STOP"
-    if "STOP" in tf:
-        return False
-    else:
+    if "STOP" not in tf:
         return True
 
 # see if sequence is safe
 def safe_sequence(line):
-    if ascending(line) is True or descending(line) is True:
-        if diff_in_range(line) is True:
-            return True
+    if in_order(line) is True and diff_in_range(line) is True:
+        return True
 
 # get all variations of a sequence, popping one element each
 def variations(seq):
@@ -51,12 +38,11 @@ def variations(seq):
 # get all lines into object
 all = []
 for line in lines:
+    print(line)
     temp = []
-    splitline = [int(x) for x in line.split()]
-    for s in splitline:
-        temp.append(s)
+    for s in line.split():
+        temp.append(int(s))
     all.append(temp)
-
 
 ############ PART ONE
 #safe_seqs = 0

@@ -1,5 +1,7 @@
 from input_1 import input
-
+def ParseRecords(input):
+    return [ [int(x) for x in line.split()] for line in input]
+    
 left_list = []
 right_list = []
 
