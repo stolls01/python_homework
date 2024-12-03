@@ -2,9 +2,6 @@ from util import read_input
 import re
 lines = read_input("input_3.txt")
 
-#correct (niko) would be:       100189366
-#i get which is FALSE:          101681733
-
 # 1. read input
 # 2. "splice" all lines
 # 3. feed those into regex function from part 1 to calculate all mul()s
@@ -17,16 +14,15 @@ def find_mul(line):
     x = re.findall("mul[(][0-9]+,[0-9]+[)]", line)
     return(x)
 
-# issue must be here somewhere since its only part different from part 1 which works
 def splice(line):
     cutline = ""
     status = True
     for x in range(len(line)):
         if line[x:x+7] == "don't()":
             status = False
-        elif line[x:x+4] == "do()" or bool(status) is True:
+        elif line[x:x+4] == "do()":
             status = True
-            cutline += line[x]
+        if status is True: cutline += line[x]
     return cutline
 
 # PART ONE
@@ -34,9 +30,12 @@ def splice(line):
 #for line in lines:
 #    multiply.append(find_mul((line)))
 
-multiply = []
+gigantic = ""
 for line in lines:
-    multiply.append(find_mul(splice(line)))
+    gigantic += line
+
+multiply = []
+multiply.append(find_mul(splice(gigantic)))
 
 score = 0
 for x in range(len(multiply)):
@@ -44,15 +43,3 @@ for x in range(len(multiply)):
         score += eval(m)
 
 print(score)
-
-
-def splice(line):
-    cutline = ""
-    status = True
-    for x in range(len(line)):
-        if line[x:x+7] == "don't()":
-            status = False
-        elif line[x:x+4] == "do()" or bool(status) is True:
-            status = True
-            cutline += line[x]
-    return cutline
