@@ -4,7 +4,7 @@ lines = read_input("input_3.txt")
 
 # 1. read input
 # 2. "splice" all lines
-# 3. feed those into regex function from part 1 to calculate all mul()s
+# 3. feed those into regex function to calculate all mul()s
 # test = "don't()xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()don't()?muldo()(8,5))"
 
 def mul(a, b):
@@ -25,17 +25,15 @@ def splice(line):
         if status is True: cutline += line[x]
     return cutline
 
-# PART ONE
-#multiply = []
-#for line in lines:
-#    multiply.append(find_mul((line)))
-
 gigantic = ""
 for line in lines:
     gigantic += line
 
-multiply = []
-multiply.append(find_mul(splice(gigantic)))
+multiply = []                                           # PART ONE
+multiply.append(find_mul((gigantic)))
+
+#multiply = []                                            PART TWO
+#multiply.append(find_mul(splice(gigantic)))             
 
 score = 0
 for x in range(len(multiply)):

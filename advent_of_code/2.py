@@ -22,7 +22,7 @@ def safe_sequence(line):
     if in_order(line) is True and diff_in_range(line) is True:
         return True
 
-# get all variations of a sequence, popping one element each
+# get all permutations of a sequence, popping one element each
 def variations(seq):
     popped = {}
     for x in range(len(seq)):
@@ -33,26 +33,21 @@ def variations(seq):
             popped[x].append(y)
     return(list(popped.values()))
 
-########################################################################
-
 # get all lines into object
 all = []
 for line in lines:
-    print(line)
     temp = []
     for s in line.split():
         temp.append(int(s))
     all.append(temp)
 
-############ PART ONE
-#safe_seqs = 0
-#for line in all:
-#    if safe_sequence(line) is True:
-#        safe_seqs += 1
-#print(safe_seqs)
+safe_seqs = 0                               # PART ONE
+for line in all:        
+    if safe_sequence(line) is True:
+        safe_seqs += 1                     
+print("Part 1:", safe_seqs)
 
-############ PART TWO
-safe_seqs = 0
+safe_seqs = 0                               # PART TWO
 for line in all:
     if safe_sequence(line) is True:
         safe_seqs += 1
@@ -66,4 +61,4 @@ for line in all:
         if "nice" in temp:
             safe_seqs += 1
 
-print(safe_seqs)
+print("Part 2:", safe_seqs)

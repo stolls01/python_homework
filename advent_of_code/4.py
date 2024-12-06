@@ -22,19 +22,18 @@ def lines_vertical(lines):
 # y VERTICAL
 # input is 140x140 matrix
 
-def diagonal_x(xpos, ypos, lines):
+def diagonal(xpos, ypos, lines):
     xlen = len(lines[0])
-    diag = ""
-    for a in range(xlen - xpos):
-        diag += lines[ypos + a][xpos + a]
-    return diag
-
-def diagonal_y(xpos, ypos, lines):
     ylen = len(lines)
     diag = ""
-    for a in range(ylen - ypos):
-        diag += lines[ypos + a][xpos + a]
-    return diag
+    if ypos == 0:
+        for a in range(xlen - xpos):
+            diag += lines[ypos + a][xpos + a]
+        return diag
+    if xpos == 0:
+        for a in range(ylen - ypos):
+            diag += lines[ypos + a][xpos + a]
+        return diag
 
 linesrv = []
 for l in lines:
@@ -42,11 +41,11 @@ for l in lines:
 
 diagonal_lines = []
 for z in range(len(lines)):
-    diagonal_lines.append(diagonal_x(z, 0, lines))
-    diagonal_lines.append(diagonal_x(z, 0, linesrv))
+    diagonal_lines.append(diagonal(z, 0, lines))
+    diagonal_lines.append(diagonal(z, 0, linesrv))
 for z in range(1, len(lines)):
-    diagonal_lines.append(diagonal_y(0, z, lines))
-    diagonal_lines.append(diagonal_y(0, z, linesrv))
+    diagonal_lines.append(diagonal(0, z, lines))
+    diagonal_lines.append(diagonal(0, z, linesrv))
 
 xmas_count = find_fwrv(lines) + find_fwrv(lines_vertical(lines)) + find_fwrv(diagonal_lines)
-print(xmas_count)
+print("Part 1:", xmas_count)
