@@ -30,7 +30,7 @@ def find_loops(lines, start_position, n_turns):
         y = position[0]
         x = position[1]
 
-        # if out of bounds it breaks
+        # if next position would be out of bounds, move on to next permutation
         if y <= 0 or x >= len(lines[0])-1 or y >= (len(lines))-1 or x <= 0:
             break
 
@@ -43,7 +43,7 @@ def find_loops(lines, start_position, n_turns):
                 next_y = y + next_pos[arrow][0]
                 next_x = x + next_pos[arrow][1]
 
-                # if next position is not a #
+                # if next position is not a #, move there
                 if lines[next_y][next_x] != "#":
                     position = [next_y, next_x]
 
@@ -66,11 +66,10 @@ for y in range(len(lines)):
         else:
             print(iteration)
             iteration += 1
-            print("........")
             newline = lines[y][:x] + "#" + lines[y][x+1:]
             lines2 = copy.deepcopy(lines)
             lines2[y] = newline
-            if find_loops(lines2, orig_position, 20000) is True:
+            if find_loops(lines2, orig_position, 10000) is True:
                 loop_count += 1
 
 print("Part 2:", loop_count)
