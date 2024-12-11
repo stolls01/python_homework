@@ -22,7 +22,7 @@ for num, line in enumerate(lines):
             if line[i] == "^":
                 orig_position = [num, i]
 
-def count_steps(lines, start_position, n_turns):
+def count_turns(lines, start_position, n_turns):
     position = start_position
     visited_positions = []
     direction = "^"
@@ -30,24 +30,26 @@ def count_steps(lines, start_position, n_turns):
     for i in range(n_turns):
         y = position[0]
         x = position[1]
+
+        # printing !!
+        lines[y] = lines[y][:x] + direction + lines[y][x+1:]
+        os.system("cls")
+        for line in lines[:y+30]: # slicing for better printing
+            print(line)
+        # time.sleep(0.05) # would take forever with big input                    
+
         # if out of bounds, it breaks
-        if y <= 0 or x >= len(lines[0])-1 or y >= (len(lines))-1 or x <= 0:
+        if y <= 0 or x >= len(lines[0]) or y+1 == (len(lines)) or x <= 0:
             break
 
+        # check whether next position according direction is # or not, advance accordingly
         for arrow in turn.keys(): # directions
             if direction == arrow:
                 next_y = next_index[arrow][0]
                 next_x = next_index[arrow][1]
                 if lines[y+next_y][x+next_x] != "#":
                     position = [y + next_y, x + next_x]
-                    y = position[0]
-                    x = position[1]
                     visited_positions.append(position)
-                    lines[y] = lines[y][:x] + direction + lines[y][x+1:]
-                    os.system("cls")
-                    for line in lines:
-                        print(line)
-                    # time.sleep(0.1) # would take forever with big input
                 if lines[y + next_y][x + next_x] == "#":
                     direction = turn[direction]
         #print("Visited Positions", visited_positions)
@@ -56,7 +58,7 @@ def count_steps(lines, start_position, n_turns):
 # PART ONE
 def unique_count(lines, i):
     unique_positions = []
-    for v in count_steps(lines, orig_position, i):
+    for v in count_turns(lines, orig_position, i):
         if v not in unique_positions:
             unique_positions.append(v)
     return len(unique_positions)
