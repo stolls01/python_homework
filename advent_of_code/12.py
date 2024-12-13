@@ -50,7 +50,7 @@ def main():
             all_positions.append([y, x])
 
     plots = get_entire_region(plot, all_positions)
-
+    print(plots)
     edge_counts = {}
     for key, value in plots.items():
         edge_counts[key] = 0
