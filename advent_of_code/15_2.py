@@ -2,6 +2,7 @@ from util import read_input
 import copy
 import time
 import os
+
 raw = read_input("input_15.txt")
 
 def widen(map):
@@ -114,10 +115,8 @@ def main():
     map = []
     movements = ""
     for r in raw:
-        if "#" in r:
-            map.append(r)
-        else:
-            movements += r
+        if "#" in r: map.append(r)
+        else: movements += r
 
     # for part two, make 0 into []
     map = widen(map)

@@ -2,18 +2,16 @@ from util import read_input
 import copy
 import time
 import os
+
 raw = read_input("input_15.txt")
 
 map = []
 movements = ""
 for r in raw:
-    if "#" in r:
-        map.append(r)
-    else:
-        movements += r
+    if "#" in r: map.append(r)
+    else: movements += r
 
-for m in map:
-    print(m)
+for m in map: print(m)
 print(movements)
 
 # get original position of robot
