@@ -4,7 +4,6 @@ import time
 import os
 
 raw = read_input("input_15.txt")
-
 map = []
 movements = ""
 for r in raw:

@@ -37,6 +37,7 @@ def box_positions(position, boxes, map, z):
         
     for p in positions:
         if p not in boxes: boxes.append(p)
+    
     return boxes
 
 
